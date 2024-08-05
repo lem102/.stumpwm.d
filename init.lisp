@@ -18,7 +18,7 @@
 
 (defcommand jacob-terminal () ()
   "Run or raise the terminal."
-  (run-or-raise "x-terminal-emulator" '(:class "xfce4-terminal")))
+  (run-or-raise "xfce4-terminal" '(:class "Xfce4-terminal")))
 
 ;; keybinds
 (define-key *top-map* (kbd "s-1") "emacs")
@@ -37,6 +37,7 @@
 ;; system tray
 
 ;; git clone https://github.com/stumpwm/stumpwm-contrib ~/.stumpwm.d/modules
+;; sudo apt install pasystray
 
 (load-module "stumptray")
 (stumptray::stumptray)
