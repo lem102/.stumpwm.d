@@ -1,9 +1,10 @@
 (in-package :stumpwm)
 
+(ql:quickload :slynk)
+
 ;; start server for sly
-;; (defun jacob-open-connection ()
-;;   (ql:quickload :slynk)
-;;   (slynk:create-server :dont-close t))
+(defcommand jacob-open-connection () ()
+  (slynk:create-server :dont-close t))
 
 ;; set prefix key
 (set-prefix-key (kbd "s-t"))
@@ -48,8 +49,8 @@
 (define-key *top-map* (kbd "s-k") "delete")
 
 ;; add date/time to mode line
-(setq *time-modeline-string* "%H:%M %d/%m/%y")
-(setq *screen-mode-line-format* (list "[^B%n^b] %W | %d %B"))
+(setq *time-modeline-string* "^B%H:%M^b %d/%m/%y")
+(setq *screen-mode-line-format* (list "[^B%n^b] %W ^> %d"))
 (setq *mode-line-timeout* 10)
 
 ;; make mouse change focused window
@@ -57,19 +58,32 @@
 
 
 ;; modules
+
 ;; git clone https://github.com/stumpwm/stumpwm-contrib ~/.stumpwm.d/modules
 
+
+;; battery
 (load-module "battery-portable")
 
-;; system tray
+(unless (member " %B" *screen-mode-line-format* :test #'string=)
+  (nconc *screen-mode-line-format* '(" %B")))
 
-(ql:quickload "xembed")
+
+;; network connection
+(load-module "net")
 
-(load-module "stumptray")
-(stumptray::stumptray)
+(unless (member " %l" *screen-mode-line-format* :test #'string=)
+  (nconc *screen-mode-line-format* '(" %l")))
 
-;; JACOBTODO: is there a more stumpwm way to do this?
-;; sudo apt install pasystray
-(run-shell-command "pasystray")
+
+;; third party modules
 
+;; git clone https://github.com/Junker/stumpwm-pamixer ~/.stumpwm.d/modules/pamixer
+;; sudo apt install pamixer
+
+(add-to-load-path "~/.stumpwm.d/modules/pamixer")
+(load-module "pamixer")
+
+(unless (member " %P" *screen-mode-line-format* :test #'string=)
+  (nconc *screen-mode-line-format* '(" %P")))
 
