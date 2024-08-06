@@ -69,11 +69,11 @@
   (nconc *screen-mode-line-format* '(" %B")))
 
 
-;; network connection
-(load-module "net")
+;; view current network connection
+(load-module "wifi")
 
-(unless (member " %l" *screen-mode-line-format* :test #'string=)
-  (nconc *screen-mode-line-format* '(" %l")))
+(unless (member " %I" *screen-mode-line-format* :test #'string=)
+  (nconc *screen-mode-line-format* '(" %I")))
 
 
 ;; third party modules
