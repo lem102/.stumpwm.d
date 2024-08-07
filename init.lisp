@@ -76,6 +76,7 @@ Stolen from https://github.com/alezost/stumpwm-config/blob/0e6877778d36148f3be53
 
 
 ;; battery
+;; JACOBTODO: disable on desktop
 (load-module "battery-portable")
 
 (unless (member " %B" *screen-mode-line-format* :test #'string=)
@@ -83,6 +84,7 @@ Stolen from https://github.com/alezost/stumpwm-config/blob/0e6877778d36148f3be53
 
 
 ;; view current network connection
+;; JACOBTODO: disable when wifi not used
 (load-module "wifi")
 
 (unless (member " %I" *screen-mode-line-format* :test #'string=)
@@ -113,7 +115,7 @@ Stolen from https://github.com/alezost/stumpwm-config/blob/0e6877778d36148f3be53
 ;; pulse-audio
 
 ;; git clone https://github.com/Junker/stumpwm-pamixer ~/.stumpwm.d/modules/pamixer
-;; sudo apt install pamixer
+;; sudo apt install pamixer pavucontrol
 
 (add-to-load-path "~/.stumpwm.d/modules/pamixer")
 (load-module "pamixer")
