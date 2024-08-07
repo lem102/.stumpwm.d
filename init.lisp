@@ -10,8 +10,7 @@
 (set-prefix-key (kbd "s-t"))
 
 ;; toggle stumpwm modeline
-(toggle-mode-line (current-screen)
-                  (current-head))
+(enable-mode-line (current-screen) (current-head) t)
 
 ;; parameters
 
@@ -19,6 +18,18 @@
   "Browser program to use.")
 
 ;; (setq *jacob-browser* "google-chrome")
+
+;; JACOBTODO: copy this idea https://github.com/alezost/stumpwm-config/blob/0e6877778d36148f3be53dbe1f81404f2892963f/utils.lisp#L365
+
+(defun jacob-executable-exists? (name)
+  "Return t, if NAME executable exists in PATH.
+
+Stolen from https://github.com/alezost/stumpwm-config/blob/0e6877778d36148f3be53dbe1f81404f2892963f/utils.lisp#L27"
+  (zerop
+   (nth-value 2
+              (uiop:run-program (concat "command -v " name)
+                                :force-shell t
+                                :ignore-error-status t))))
 
 ;; commands
 
@@ -31,6 +42,8 @@
   "Run or raise the terminal."
   (run-or-raise "xfce4-terminal" '(:class "Xfce4-terminal")))
 
+;; JACOBTODO: windows don't appear in correct place when running from
+;; window that isn't emacs/browser
 (defcommand jacob-vertical-split () ()
   "Vertically split the screen showing the browser and emacs."
   (if (only-one-frame-p)
