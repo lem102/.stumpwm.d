@@ -76,7 +76,28 @@
   (nconc *screen-mode-line-format* '(" %I")))
 
 
+;; fonts
+
+;; this project was taken off quicklisp but is needed for "modern" fonts. clone it before loading ttf-fonts module
+;; git clone https://github.com/lihebi/clx-truetype.git ~/quicklisp/local-projects/clx-truetype
+
+(ql:quickload :clx-truetype)
+(load-module "ttf-fonts")
+
+;; (xft:cache-fonts) ; make sure it knows about the fonts
+;; (clx-truetype:get-font-families) ; check available font familes
+;; (clx-truetype:get-font-subfamilies "DejaVu Sans Mono") ; check available font subfamiles
+
+(set-font (make-instance 'xft:font
+                         :family "DejaVu Sans Mono"
+                         :subfamily "Book"
+                         :size 10))
+
+
 ;; third party modules
+
+
+;; pulse-audio
 
 ;; git clone https://github.com/Junker/stumpwm-pamixer ~/.stumpwm.d/modules/pamixer
 ;; sudo apt install pamixer
