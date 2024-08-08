@@ -16,7 +16,7 @@
 
 ;; (setq *jacob-browser* "google-chrome")
 
-;; JACOBTODO: copy this idea https://github.com/alezost/stumpwm-config/blob/0e6877778d36148f3be53dbe1f81404f2892963f/utils.lisp#L365
+;; JACOBTODO: steal this idea https://github.com/alezost/stumpwm-config/blob/0e6877778d36148f3be53dbe1f81404f2892963f/utils.lisp#L365
 
 (defun jacob-executable-exists? (name)
   "Return t, if NAME executable exists in PATH.
