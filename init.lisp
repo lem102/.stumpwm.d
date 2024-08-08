@@ -9,9 +9,6 @@
 ;; set prefix key
 (set-prefix-key (kbd "s-t"))
 
-;; toggle stumpwm modeline
-(enable-mode-line (current-screen) (current-head) t)
-
 ;; parameters
 
 (defparameter *jacob-browser* "firefox"
@@ -62,9 +59,15 @@ Stolen from https://github.com/alezost/stumpwm-config/blob/0e6877778d36148f3be53
 (define-key *top-map* (kbd "s-k") "delete")
 
 ;; add date/time to mode line
-(setq *time-modeline-string* "^B%H:%M^b %d/%m/%y")
+(setq *time-modeline-string* "^B%H:%M %d/%m/%y^b")
 (setq *screen-mode-line-format* (list "[^B%n^b] %W ^> %d"))
-(setq *mode-line-timeout* 10)
+(setq *mode-line-timeout* 2)
+
+;; `modus-vivendi', is that you?
+(setq *mode-line-background-color* "#323232")
+(setq *mode-line-border-color* "#a8a8a8")
+
+(enable-mode-line (current-screen) (current-head) t)
 
 ;; make mouse change focused window
 (setq *mouse-focus-policy* :sloppy)
@@ -99,14 +102,14 @@ Stolen from https://github.com/alezost/stumpwm-config/blob/0e6877778d36148f3be53
 (ql:quickload :clx-truetype)
 (load-module "ttf-fonts")
 
-;; (xft:cache-fonts) ; make sure it knows about the fonts
+(xft:cache-fonts) ; make sure it knows about the fonts
 ;; (clx-truetype:get-font-families) ; check available font familes
 ;; (clx-truetype:get-font-subfamilies "DejaVu Sans Mono") ; check available font subfamiles
 
 (set-font (make-instance 'xft:font
                          :family "DejaVu Sans Mono"
                          :subfamily "Book"
-                         :size 10))
+                         :size 12))
 
 
 ;; third party modules
